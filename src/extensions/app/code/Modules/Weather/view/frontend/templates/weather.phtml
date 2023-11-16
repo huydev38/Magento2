@@ -1,0 +1,384 @@
+<?php
+
+/**
+ * @var \Modules\Weather\Block\WeatherBlock $block
+ */
+?>
+<?php
+$ch = curl_init();
+$url = 'http://api.openweathermap.org/data/2.5/onecall?lat=21.027763&lon=105.834160&units=metric&lang=vi&APPID=';
+$api_key = '2fd93d34a2121d9ff3507a700d1b19ce';
+$url = $url . $api_key;
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, $url);
+$result = curl_exec($ch);
+curl_close($ch);
+
+$today = date('w');
+
+$obj = json_decode($result);
+$lat = $obj->lat;
+$lon = $obj->lon;
+$timezone = $obj->timezone;
+$current = $obj->current;
+$daily = $obj->daily;
+?>
+<?php
+function getDayofWeekName($dayOfWeak)
+{
+  $dayOfWeak = $dayOfWeak % 7;
+  switch ($dayOfWeak) {
+    case 1:
+      return 'Thứ hai';
+    case 2:
+      return 'Thứ ba';
+    case 3:
+      return 'Thứ tư';
+    case 4:
+      return 'Thứ năm';
+    case 5:
+      return 'Thứ sáu';
+    case 6:
+      return 'Thứ bảy';
+    default:
+      return 'Chủ nhật';
+  }
+}
+
+function getIconUrl($iconName)
+{
+  return 'http://openweathermap.org/img/wn/' . $iconName . '.png';
+}
+
+function getWindDirection($wind_degress)
+{
+  if ($wind_degress >= 11.25 && $wind_degress < 33.75) {
+    return "BĐB";
+  } else if ($wind_degress >= 33.75 && $wind_degress < 56.25) {
+    return "ĐB";
+  } else if ($wind_degress >= 56.25 && $wind_degress < 78.75) {
+    return "ĐĐB";
+  } else if ($wind_degress >= 78.75 && $wind_degress < 101.25) {
+    return "Đ";
+  } else if ($wind_degress >= 101.25 && $wind_degress < 123.75) {
+    return "ĐĐN";
+  } else if ($wind_degress >= 123.57 && $wind_degress < 146.25) {
+    return "ĐN";
+  } else if ($wind_degress >= 146.25 && $wind_degress < 168.75) {
+    return "NĐN";
+  } else if ($wind_degress >= 168.75 && $wind_degress < 191.25) {
+    return "N";
+  } else if ($wind_degress >= 191.25 && $wind_degress < 213.75) {
+    return "NTN";
+  } else if ($wind_degress >= 213.75 && $wind_degress < 236.25) {
+    return "TN";
+  } else if ($wind_degress >= 236.25 && $wind_degress < 258.75) {
+    return "TTN";
+  } else if ($wind_degress >= 258.75 && $wind_degress < 281.25) {
+    return "T";
+  } else if ($wind_degress >= 281.25 && $wind_degress < 303.75) {
+    return "TTB";
+  } else if ($wind_degress >= 303.75 && $wind_degress < 326.25) {
+    return "TB";
+  } else if ($wind_degress >= 326.25 && $wind_degress < 348.75) {
+    return "BTB";
+  } else if ($wind_degress >= 348.75 && $wind_degress < 11.25) {
+    return "B";
+  }
+}
+?>
+
+<div style="display: grid;">
+  <div style="width: inherit;" class="row">
+    <h2>
+      Hà Nội, Việt Nam
+    </h2>
+    <p>Ngày <?php echo date("d/m/Y"); ?></p>
+
+    <div style="width:initial;" class="column">
+      <img src="<?php echo getIconUrl($current->weather[0]->icon); ?>" width="150" height="150">
+      <p>Mô tả: <?php echo ucfirst($current->weather[0]->description); ?></p>
+      <p>Nhiệt độ cảm nhận: <?php echo $current->feels_like; ?>°C</p>
+    </div>
+    <div class="column">
+      <table class="info">
+        <tbody>
+          <tr>
+            <td>
+              <i>- Nhiệt độ</i>: <?php echo $current->temp; ?>°C
+            </td>
+            </td>
+            <td>
+              <i>- Độ ẩm</i>: <?php echo $current->humidity; ?>%
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i>- Hướng gió</i>: <?php echo getWindDirection($current->wind_deg) ?>
+            </td>
+            <td>
+              <i>- Vận tốc gió</i>: <?php echo $current->wind_speed; ?> m/s
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i>- Áp suất</i>: <?php echo $current->pressure; ?> hPa
+            </td>
+            <td>
+              <i>- Tầm nhìn</i>: <?php echo $current->visibility; ?> m
+            </td>Trời nắng
+          </tr>
+          <tr>
+            <td>
+              <i>- Kinh độ</i>: <?php echo $lon ?>
+            </td>
+            <td>
+              <i>- Vĩ độ</i>: <?php echo $lat ?>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i>- Múi giờ</i>: <?php echo $timezone; ?>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <ul style="list-style-type: none; padding-left: 20px; margin-top: 5px;">
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[0]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[0]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ: <?php $min_temp = (int)$daily[0]->temp->min;
+                        $max_temp = (int)$daily[0]->temp->max;
+                        echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[0]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[0]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[1]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[1]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ:
+              <?php $min_temp = (int)$daily[1]->temp->min;
+              $max_temp = (int)$daily[1]->temp->max;
+              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[1]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[1]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[2]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[2]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ:
+              <?php $min_temp = (int)$daily[2]->temp->min;
+              $max_temp = (int)$daily[2]->temp->max;
+              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[2]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[2]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[3]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[3]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ:
+              <?php $min_temp = (int)$daily[3]->temp->min;
+              $max_temp = (int)$daily[3]->temp->max;
+              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[3]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[3]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[4]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[4]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ:
+              <?php $min_temp = (int)$daily[4]->temp->min;
+              $max_temp = (int)$daily[4]->temp->max;
+              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[4]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[4]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[5]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[5]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ:
+              <?php $min_temp = (int)$daily[5]->temp->min;
+              $max_temp = (int)$daily[5]->temp->max;
+              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[5]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[5]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[6]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[6]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ:
+              <?php $min_temp = (int)$daily[6]->temp->min;
+              $max_temp = (int)$daily[6]->temp->max;
+              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[6]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[6]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <div class="column" style="width: 250px; margin-right: 5px;">
+            <span>
+              <b>
+                <?php echo getDayofWeekName(date("N", $daily[7]->dt)); ?>, ngày
+                <?php echo date("d/m/Y", $daily[7]->dt); ?>
+              </b>
+            </span>
+            <br>
+            <span>
+              Nhiệt độ:
+              <?php $min_temp = (int)$daily[7]->temp->min;
+              $max_temp = (int)$daily[7]->temp->max;
+              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
+            </span>
+            <br>
+            <span>
+              <?php echo ucfirst($daily[7]->weather[0]->description) ?>
+            </span>
+          </div>
+          <div class="column" style="width: auto;">
+            <img src="<?php echo getIconUrl($daily[7]->weather[0]->icon); ?>" width="58px" height="58px">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<style>
+.column {
+  float: left;
+  width: 50%;
+}
+
+
+.row:after {
+  display: table;
+  clear: both;
+  margin-bottom: 5px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 1px;
+}
+
+table.info td {
+  width: 250px;
+  padding: 5px;
+}
+</style>

@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<?php
+/**
+ * @var \Modules\ExchangeRate\Block\ExchangeRateBlock $block
+ */
+?>
+
+<?php
+$arrContextOptions=array(
+    "ssl"=>array(
+        "verify_peer"=>false,
+        "verify_peer_name"=>false,
+    ),
+);
+
+$url = "https://www.vietcombank.com.vn/exchangerates/ExrateXML.aspx";
+$xml = file_get_contents($url,false, stream_context_create($arrContextOptions));
+$new = simplexml_load_string($xml);
+$con = json_encode($new);
+$data = json_decode($con, true);
+
+?>
+<h3 class="text-center">Bảng quy đổi tiền tệ Vietcombank <?= $data['DateTime'] ?></h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col"><h5>STT</h5></th>
+        <th scope="col"><h5>Mã</h5></th>
+        <th scope="col"><h5>Tên</h5></th>
+        <th scope="col"><h5>Giá mua</h5></th>
+        <th scope="col"><h5>Giá bán</h5></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($data['Exrate'] as $k => $currency): ?>
+    <tr>
+        <th scope="row"><h5><?= $k+1 ?></h5></th>
+        <td style="font-size: 1.25rem;">
+            <img src="https://www.countryflags.io/<?= substr($currency['@attributes']['CurrencyCode'], 0, -1) ?>/shiny/24.png">
+            <?= $currency['@attributes']['CurrencyCode'] ?>
+        </td>
+        <td><h5><?= $currency['@attributes']['CurrencyName'] ?></h5></td>
+        <td><h5><?= $currency['@attributes']['Buy'] ?></h5></td>
+        <td><h5><?= $currency['@attributes']['Sell'] ?></h5></td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

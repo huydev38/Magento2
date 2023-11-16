@@ -1,0 +1,47 @@
+
+Magento
+composer create-project --repository=https://repo.magento.com/ magento/project-community-edition magento
+
+bin/magento setup:install \
+--db-host=mysql \
+--db-name=magento2 \
+--db-user=root \
+--db-password=mysql_root_password \
+--admin-firstname=Magento \
+--admin-lastname=Admin \
+--admin-email=inf.ng.nam@gmail.com \
+--admin-user=admin \
+--admin-password=thisisadmin123 \
+--language=en_US \
+--currency=VND \
+--timezone=Asia/Ho_Chi_Minh \
+--use-rewrites=1 \
+--search-engine=elasticsearch7 \
+--elasticsearch-host=elasticsearch \
+--elasticsearch-port=9200 \
+--cache-backend=redis \
+--cache-backend-redis-server=redis \
+--cache-backend-redis-port=6379 \
+--cleanup-database
+
+
+bin/magento module:disable Magento_TwoFactorAuth
+bin/magento cache:flush
+php bin/magento indexer:reindex
+
+
+bin/magento setup:upgrade --keep-generated
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy -f
+chmod -R 777 var/ generated/
+
+sudo ./bin/magento setup:uninstall
+
+Docker
+  docker-compose up -d --build
+  docker exec -it app bash
+  docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
+  docker-compose down
+
+
+sudo chown -R 1000:1000 data/elasticsearch/
