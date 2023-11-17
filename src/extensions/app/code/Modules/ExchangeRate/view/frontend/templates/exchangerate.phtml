@@ -6,19 +6,23 @@
 ?>
 
 <?php
-$arrContextOptions=array(
-    "ssl"=>array(
-        "verify_peer"=>false,
-        "verify_peer_name"=>false,
-    ),
-);
+$ch = curl_init();
+$headr = array();
+$url = "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=8";
 
-$url = "https://www.vietcombank.com.vn/exchangerates/ExrateXML.aspx";
-$xml = file_get_contents($url,false, stream_context_create($arrContextOptions));
-$new = simplexml_load_string($xml);
-$con = json_encode($new);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headr);
+curl_setopt($ch, CURLOPT_URL, $url ); // get the url contents
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch,CURLOPT_USERAGENT,'spider');
+
+$get = curl_exec($ch); // execute curl request
+curl_close($ch);
+
+$xml = simplexml_load_string($get);
+$con = json_encode($xml);
 $data = json_decode($con, true);
-
 ?>
 <h3 class="text-center">Bảng quy đổi tiền tệ Vietcombank <?= $data['DateTime'] ?></h3>
 <table class="table">
@@ -36,7 +40,7 @@ $data = json_decode($con, true);
     <tr>
         <th scope="row"><h5><?= $k+1 ?></h5></th>
         <td style="font-size: 1.25rem;">
-            <img src="https://www.countryflags.io/<?= substr($currency['@attributes']['CurrencyCode'], 0, -1) ?>/shiny/24.png">
+            <img src="https://flagsapi.com/<?= substr($currency['@attributes']['CurrencyCode'], 0, -1) ?>/flat/64.png">
             <?= $currency['@attributes']['CurrencyCode'] ?>
         </td>
         <td><h5><?= $currency['@attributes']['CurrencyName'] ?></h5></td>
