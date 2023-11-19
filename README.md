@@ -118,7 +118,7 @@ Sử dụng **Access Keys** từ trên nhập vào theo yêu cầu
 2. Setup mangeto với lệnh sau
   ```bash
   php bin/magento setup:install \
-  --backend-frontname="/admin"
+  --backend-frontname="admin"
   --db-host=mysql \
   --db-name=magento2 \
   --db-user=root \
