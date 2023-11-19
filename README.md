@@ -154,7 +154,7 @@ Sử dụng **Access Keys** từ trên nhập vào theo yêu cầu
 
   Update module
   ```bash
-  php php bin/magento setup:upgrade
+  php bin/magento setup:upgrade
   ```
 
   Compile source code
