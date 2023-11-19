@@ -169,7 +169,7 @@ Sử dụng **Access Keys** từ trên nhập vào theo yêu cầu
 
   Chuyển quyền cho file **var/** và **generated/**
   ```bash
-  chmod -R 777 var/ generated/
+  chmod -R 777 var/ generated/ pub
   ```
 
 ### Using
