@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Tin công nghệ</title>
+    </head>
+    <referenceContainer name="content">
+        <block class="MyModules\News\Block\Index" name="news_index_index" template="MyModules_News::index.phtml" cacheable="false" />
+    </referenceContainer>
+</page>

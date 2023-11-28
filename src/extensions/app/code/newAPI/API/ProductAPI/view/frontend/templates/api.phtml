@@ -1,0 +1,71 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="container">
+    <div class="row">
+        <h4 style="margin-top: 20px">Bản giới thiệu một số API được phát triển thêm (không cần đăng nhập)</h4>
+        <ul class="list-unstyled">
+            <ul>
+                <li><h5>Mục đích:</h5>
+                    <ul>
+                        <li>Nhằm lấy thông tin sản phẩm đơn giản hơn cho các nhà phát triển.</li>
+                        <li>Phục vụ cho quảng cáo sản phẩm ở các trang Web khác</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul>
+                <li><h5>Chức năng:</h5>
+                    <ul>
+                        <li>Lấy thông tin sản phẩm bằng ID của sản phẩm.</li>
+                        <li>Lấy thông tin sản phẩm bằng SKU của sản phẩm.</li>
+                        <li>Lấy thông tin các sản phẩm có cùng Category ID.</li>
+                        <li>Lấy thông tin về các sản phẩm bán chạy nhất.</li>
+                        <li>Lấy thông tin về các sản phẩm được đánh giá cao nhất.</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li><h5>Hướng dẫn sử dụng:</h5>
+                    <ul>
+                        <li>Lấy thông tin sản phẩm bằng ID của sản phẩm.
+                            <ul>https://magento.uetabc.dev/rest/V1/products/id/:id
+                                (với :id thay bằng id của sản phẩm vd: id = 2047)
+                            </ul>
+                        </li>
+                        <li>Lấy thông tin sản phẩm bằng SKU của sản phẩm.
+                            <ul>https://magento.uetabc.dev/rest/V1/products/sku/:sku
+                                (với :sku thay bằng SKU của sản phẩm vd: sku = SRPG25J1)
+                            </ul>
+                        </li>
+                        <li>Lấy thông tin các sản phẩm có cùng Category ID.
+                            <ul>https://magento.uetabc.dev/rest/V1/products/category/:cid
+                                (với :cid thay bằng CategoryId vd: cid = 20)
+                            </ul>
+                        </li>
+                        <li>Lấy thông tin về các sản phẩm bán chạy nhất.
+                            <ul>https://magento.uetabc.dev/rest/V1/products/top/selling</ul>
+                        </li>
+                        <li>Lấy thông tin về các sản phẩm được đánh giá cao nhất.
+                            <ul>https://magento.uetabc.dev/rest/V1/products/top/rated</ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul>
+                <li><h5>Hướng dẫn cài đặt:</h5>
+                    <ul>
+                        <li>Bước 1: Copy thư mục API/ vào thư mục app/code trong source.</li>
+                        <li>Bước 2: Cập nhật module của Magento.
+                            <ul>php bin/magento setup:upgrade</ul>
+                        </li>
+                        <li>Bước 3: Flush Cache bằng lệnh:
+                            <ul>php bin/magento cache:flush</ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </ul>
+    </div>
+</div>

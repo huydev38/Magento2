@@ -1,0 +1,33 @@
+<?php
+  $data = $block->getExchangeRatesVCB();
+?>
+
+<p>Cập nhật lúc: <?php echo $data->DateTime ?></p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+    <tbody>
+        <tr>
+            <td style="width: 565px; text-align: center; background-color: #005030; color: white;" colspan="2">Ngoại tệ</td>
+            <td style="width: 564px; text-align: center; background-color: #005030; color: white;" colspan="2">Mua</td>
+            <td style="width: 280px; text-align: center; background-color: #005030; color: white;" rowspan="2">Bán</td>
+        </tr>
+        <tr>
+            <td style="width: 281px; text-align: center; background-color: #005030; color: white;">Mã ngoại tệ</td>
+            <td style="width: 281px; text-align: center; background-color: #005030; color: white;">Tên ngoại tệ</td>
+            <td style="width: 281px; text-align: center; background-color: #005030; color: white;">Tiền mặt</td>
+            <td style="width: 280px; text-align: center; background-color: #005030; color: white;">Chuyển khoản</td>
+        </tr>
+        <?php
+            foreach($data->Exrate as $Exrates) {
+        ?>
+            <tr>
+                <td style="width: 281px;"><?php echo $Exrates['CurrencyCode'] ?></td>
+                <td style="width: 281px;"><?php echo $Exrates['CurrencyName'] ?></td>
+                <td style="width: 281px;"><?php echo $Exrates['Buy'] ?></td>
+                <td style="width: 280px;"><?php echo $Exrates['Transfer'] ?></td>
+                <td style="width: 280px;"><?php echo $Exrates['Sell'] ?></td>
+            </tr>
+        <?php
+            } 
+        ?>
+    </tbody>
+</table>

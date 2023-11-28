@@ -1,0 +1,35 @@
+<?php 
+    $data = $block->getWeatherData();
+?>
+
+<table style="border: 1px solid #cfe2f2; width: 100%;" border="1">
+    <tbody>
+        <tr>
+            <?php
+                foreach($data->list as $cityList) {
+            ?>
+                <td style="text-align: center; background-color: #f4fbff; font-weight: 700"><?php echo $cityList->name ?></td>
+            <?php
+                } 
+            ?>
+        </tr>
+        
+        <tr>
+            <?php
+                foreach($data->list as $cityList) {
+            ?>
+                <td>
+                    <img src="http://openweathermap.org/img/w/<?php echo $cityList->weather[0]->icon ?>.png" alt="Italian Trulli">
+                    <p style="font-weight: 600"><?php echo $cityList->weather[0]->description ?></p>
+                    <p>Nhiệt độ: <?php echo $cityList->main->temp-273.15 ?><sup>o</sup>C</p>
+                    <p>Độ ẩm: <?php echo $cityList->main->humidity ?>%</p>
+                    <p>Tốc độ gió: <?php echo $cityList->wind->speed ?>m/s</p>                    
+                    <p>Mây bao phủ: <?php echo $cityList->clouds->all ?>%</p>
+                </td>    
+            <?php
+                } 
+            ?>
+        </tr>
+
+    </tbody>
+</table>
