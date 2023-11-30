@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <?php
 
 /**
@@ -8,32 +9,57 @@
 ?>
 
 <div id="content"></div>
+
 <?php
-$json = file_get_contents("https://api.rss2json.com/v1/api.json?rss_url=https://vnexpress.net/rss/tin-moi-nhat.rss");
-$data = json_decode($json, true);
+// Initialize cURL session
+$ch = curl_init("https://api.rss2json.com/v1/api.json?rss_url=https://vnexpress.net/rss/kinh-doanh.rss");
+
+// Set cURL options
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+// Execute cURL session and get the result
+$result = curl_exec($ch);
+
+// Close cURL session
+curl_close($ch);
+
+// Check for cURL errors
+if ($result === false) {
+    die('cURL Error: ' . curl_error($ch));
+}
+
+$data = json_decode($result, true);
 ?>
+
 <div class="container">
   <div class="row">
     <?php foreach ($data['items'] as $k => $item) : ?>
-    <div class="col-sm-6">
-      <div class="card flex-md-row mb-4 box-shadow h-md-250">
-        <div class="row">
-          <div class="col-sm-7">
-            <div class="card-body d-flex flex-column align-items-start">
-              <strong class="d-inline-block mb-2 text-primary">Tin tức</strong>
-              <h4 class="mb-0">
-                <a class="text-dark font-weight-bold" href="<?= $item['link'] ?>"><?= $item['title'] ?></a>
-              </h4>
-              <p class="card-text mb-auto"><?= strip_tags($item['description']) ?></p>
+      <?php
+    $pattern = '/<img src="([^"]+)"/';
+    preg_match($pattern, $item['description'], $matches);
+
+    // Lưu đường dẫn vào biến
+    $imgSrc = isset($matches[1]) ? $matches[1] : '';
+    ?>
+      <div class="col-sm-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="row">
+            <div class="col-sm-7">
+              <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Tin tức</strong>
+                <h4 class="mb-0">
+                  <a class="text-dark font-weight-bold" href="<?= $item['link'] ?>"><?= $item['title'] ?></a>
+                </h4>
+                <p class="card-text mb-auto"><?= strip_tags($item['description']) ?></p>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-5">
-            <img class="card-img-right flex-auto d-none d-md-block w-100" data-src="<?= $item['thumbnail'] ?>"
-              style="width: 250px; height: 150px;" src="<?= $item['thumbnail'] ?>" data-holder-rendered="true">
+            <div class="col-sm-5">
+              <img class="card-img-right flex-auto d-none d-md-block w-100" data-src="<?= $imgSrc ?>"
+                   style="width: 250px; height: 150px;" src="<?= $imgSrc ?>" data-holder-rendered="true">
+            </div>
           </div>
         </div>
       </div>
-    </div>
     <?php endforeach; ?>
   </div>
 </div>
