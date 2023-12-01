@@ -1,9 +1,9 @@
 <?php
 
-namespace API\ProductAPI\Api\Data;
+namespace ProductAPI\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
-use API\ProductAPI\Api\Data\ProductInterface;
+use ProductAPI\Api\Data\ProductInterface;
 
 interface ProductSearchResultsInterface extends SearchResultsInterface
 {

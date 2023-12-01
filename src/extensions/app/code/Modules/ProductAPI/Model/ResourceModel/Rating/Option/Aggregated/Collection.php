@@ -1,10 +1,10 @@
 <?php
 
-namespace API\ProductAPI\Model\ResourceModel\Rating\Option\Aggregated;
+namespace ProductAPI\Model\ResourceModel\Rating\Option\Aggregated;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use API\ProductAPI\Model\Rating\Option\Aggregated;
-use API\ProductAPI\Model\ResourceModel\Rating\Option\Aggregated as ResourceModelAggregated;
+use ProductAPI\Model\Rating\Option\Aggregated;
+use ProductAPI\Model\ResourceModel\Rating\Option\Aggregated as ResourceModelAggregated;
 
 class Collection extends AbstractCollection
 {

@@ -1,6 +1,6 @@
 <?php
-namespace API\ProductAPI\Model;
-use API\ProductAPI\Api\ProductBySKUInterface;
+namespace ProductAPI\Model;
+use ProductAPI\Api\ProductBySKUInterface;
 use Magento\Framework\View\Element\Template;
 
 

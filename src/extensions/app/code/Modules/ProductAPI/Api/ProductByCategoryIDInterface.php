@@ -1,6 +1,6 @@
 <?php
 
-  namespace API\ProductAPI\Api;
+  namespace ProductAPI\Api;
 
   /**
    * interface get product data API XML by product id

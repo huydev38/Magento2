@@ -1,6 +1,6 @@
 <?php
 
-namespace API\ProductAPI\Controller\Page;
+namespace ProductAPI\Controller\Page;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;

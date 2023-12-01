@@ -1,6 +1,6 @@
 <?php
 
-namespace API\ProductAPI\Plugin\Block;
+namespace ProductAPI\Plugin\Block;
 
 use Magento\Framework\Data\Tree\NodeFactory;
 

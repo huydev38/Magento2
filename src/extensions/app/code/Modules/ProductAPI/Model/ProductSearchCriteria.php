@@ -1,10 +1,10 @@
 <?php
 
-namespace API\ProductAPI\Model;
+namespace ProductAPI\Model;
 
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Exception\InputException;
-use API\ProductAPI\Api\ProductSearchCriteriaInterface;
+use ProductAPI\Api\ProductSearchCriteriaInterface;
 
 class ProductSearchCriteria extends SearchCriteria implements ProductSearchCriteriaInterface
 {

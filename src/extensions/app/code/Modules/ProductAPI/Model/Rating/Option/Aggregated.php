@@ -1,9 +1,9 @@
 <?php
 
-namespace API\ProductAPI\Model\Rating\Option;
+namespace ProductAPI\Model\Rating\Option;
 
 use Magento\Framework\Model\AbstractModel;
-use API\ProductAPI\Model\ResourceModel\Rating\Option\Aggregated as AggregatedResourceModel;
+use ProductAPI\Model\ResourceModel\Rating\Option\Aggregated as AggregatedResourceModel;
 
 class Aggregated extends AbstractModel
 {
