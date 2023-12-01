@@ -6,6 +6,6 @@
     <preference for="ProductAPI\Api\ProductBySKUInterface" type="ProductAPI\Model\ProductBySKU" />
     <preference for="ProductAPI\Api\ProductByIdInterface" type="ProductAPI\Model\ProductById" />
     <preference for="ProductAPI\Api\ProductByCategoryIDInterface" type="ProductAPI\Model\ProductByCategoryID" />
-    <preference for="ProductAPI\Api\Data\ProductSearchResultsInterface" type="ProductAPI\Model\ProductSearchResults" />
+    <preference for="ProductAPI\Api\ProductSearchResultsInterface" type="ProductAPI\Model\ProductSearchResults" />
     
 </config>

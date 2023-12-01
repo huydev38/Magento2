@@ -18,7 +18,7 @@ use Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection as Bestselle
 use Magento\Store\Model\StoreManager;
 use ProductAPI\Api\ProductSearchCriteriaInterface;
 use ProductAPI\Api\ProductRepositoryInterface;
-use ProductAPI\Api\Data\ProductSearchResultsInterface;
+use ProductAPI\Api\ProductSearchResultsInterface;
 use ProductAPI\Model\ProductSearchResults;
 use ProductAPI\Model\ResourceModel\Rating\Option\Aggregated\Collection as RatingAggregated;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductAPI\Api\Data;
+namespace ProductAPI\Api;
 
 use Magento\Framework\Api\SearchResultsInterface;
 use ProductAPI\Api\Data\ProductInterface;
