@@ -1,12 +1,12 @@
 <?php
 
-namespace ProductAPI\Model;
+namespace Modules\ProductAPI\Model;
 
 use Magento\Framework\Api\AbstractSimpleObject;
 use Magento\Framework\Api\SearchCriteriaInterface;
-use ProductAPI\Api\Data\ProductInterface;
-use ProductAPI\Api\ProductSearchResultsInterface;
-use ProductAPI\Model\ProductSearchCriteria;
+use Modules\ProductAPI\Api\Data\ProductInterface;
+use Modules\ProductAPI\Api\ProductSearchResultsInterface;
+use Modules\ProductAPI\Model\ProductSearchCriteria;
 
 class ProductSearchResults extends AbstractSimpleObject implements ProductSearchResultsInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductAPI\Api\Data;
+namespace Modules\ProductAPI\Api\Data;
 
 use Magento\Catalog\Api\Data\ProductInterface as MagentoProductInterface;
 

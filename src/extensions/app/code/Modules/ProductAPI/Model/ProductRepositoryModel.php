@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductAPI\Model;
+namespace Modules\ProductAPI\Model;
 
 use DateTime;
 use Magento\Catalog\Api\ProductAttributeRepositoryInterface;
@@ -16,11 +16,11 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Review\Model\ResourceModel\Rating\Collection as Rating;
 use Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection as Bestsellers;
 use Magento\Store\Model\StoreManager;
-use ProductAPI\Api\ProductSearchCriteriaInterface;
-use ProductAPI\Api\ProductRepositoryInterface;
-use ProductAPI\Api\ProductSearchResultsInterface;
-use ProductAPI\Model\ProductSearchResults;
-use ProductAPI\Model\ResourceModel\Rating\Option\Aggregated\Collection as RatingAggregated;
+use Modules\ProductAPI\Api\ProductSearchCriteriaInterface;
+use Modules\ProductAPI\Api\ProductRepositoryInterface;
+use Modules\ProductAPI\Api\ProductSearchResultsInterface;
+use Modules\ProductAPI\Model\ProductSearchResults;
+use Modules\ProductAPI\Model\ResourceModel\Rating\Option\Aggregated\Collection as RatingAggregated;
 
 class ProductRepositoryModel implements ProductRepositoryInterface
 {

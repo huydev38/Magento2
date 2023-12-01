@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductAPI\Api;
+namespace Modules\ProductAPI\Api;
 
 use API\ProductAPI\Api\ProductSearchCriteriaInterface;
 use API\ProductAPI\Api\Data\ProductSearchResultsInterface;

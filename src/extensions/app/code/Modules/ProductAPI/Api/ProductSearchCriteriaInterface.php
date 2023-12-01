@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductAPI\Api;
+namespace Modules\ProductAPI\Api;
 
 use Magento\Framework\Api\Search\FilterGroup;
 

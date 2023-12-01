@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductAPI\Block;
+namespace Modules\ProductAPI\Block;
 
 use Magento\Framework\View\Element\Template;
 

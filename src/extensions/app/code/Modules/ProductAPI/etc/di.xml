@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="ProductAPI\Api\ProductRepositoryInterface" type="ProductAPI\Model\ProductRepositoryModel" />
-    <preference for="ProductAPI\Api\ProductSearchCriteriaInterface" type="ProductAPI\Model\ProductSearchCriteria" />
-    <preference for="ProductAPI\Api\ProductBySKUInterface" type="ProductAPI\Model\ProductBySKU" />
-    <preference for="ProductAPI\Api\ProductByIdInterface" type="ProductAPI\Model\ProductById" />
-    <preference for="ProductAPI\Api\ProductByCategoryIDInterface" type="ProductAPI\Model\ProductByCategoryID" />
-    <preference for="ProductAPI\Api\ProductSearchResultsInterface" type="ProductAPI\Model\ProductSearchResults" />
+    <preference for="Modules/ProductAPI\Api\ProductRepositoryInterface" type="Modules/ProductAPI\Model\ProductRepositoryModel" />
+    <preference for="Modules/ProductAPI\Api\ProductBySKUInterface" type="Modules/ProductAPI\Model\ProductBySKU" />
+    <preference for="Modules/ProductAPI\Api\ProductSearchCriteriaInterface" type="Modules/ProductAPI\Model\ProductSearchCriteria" />
+    <preference for="Modules/ProductAPI\Api\ProductByIdInterface" type="Modules/ProductAPI\Model\ProductById" />
+    <preference for="Modules/ProductAPI\Api\ProductByCategoryIDInterface" type="Modules/ProductAPI\Model\ProductByCategoryID" />
+    <preference for="Modules/ProductAPI\Api\ProductSearchResultsInterface" type="Modules/ProductAPI\Model\ProductSearchResults" />
     
 </config>

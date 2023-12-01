@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductAPI\Model\ResourceModel\Rating\Option;
+namespace Modules\ProductAPI\Model\ResourceModel\Rating\Option;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
