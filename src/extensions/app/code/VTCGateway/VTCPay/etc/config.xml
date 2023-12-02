@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <vtcpay>
+                <active>1</active>
+                <model>VTCGateway\VTCPay\Model\VTCPay</model>
+                <order_status>pending</order_status>
+                <title>VTCPay Gateway</title>				
+				<select_p_success>processing</select_p_success>
+				<select_p_failed>pending_payment</select_p_failed>
+				<select_p_cancel>canceled</select_p_cancel>
+				<select_p_review>payment_review</select_p_review>
+				<select_p_fraud>fraud</select_p_fraud>				
+				<select_language>0</select_language>	
+				<test_mode>1</test_mode>	
+				<min_order_total>1</min_order_total>				
+				<max_order_total>1000000000</max_order_total>				
+                <sort_order>1</sort_order>			
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+            </vtcpay>
+        </payment>
+    </default>
+</config>
