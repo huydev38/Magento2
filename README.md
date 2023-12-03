@@ -174,7 +174,7 @@ Sử dụng **Access Keys** từ trên nhập vào theo yêu cầu
 
 ### Using
 
-- Truy cập **localhost:1908** để truy cập vào trang chủ của ứng dụng
+- Truy cập **localhost:** để truy cập vào trang chủ của ứng dụng
 
 - Sử dụng lệnh
   ```bash
@@ -182,7 +182,7 @@ Sử dụng **Access Keys** từ trên nhập vào theo yêu cầu
   ```
   Kết quả sẽ là phần url của quản trị viên ```<adminurl>```.
 
-  Truy cập ```localhost:1908/<adminurl>``` để truy cập vào trang đăng nhập quản trị admin.
+  Truy cập ```localhost/<adminurl>``` để truy cập vào trang đăng nhập quản trị admin.
 
   Sau khi truy cập vào đương link trang đăng nhập quản trị của admin thì sử dụng thông tin đã đăng ký từ trước trong khi cài đặt magento để đăng nhập vào.
 
@@ -207,7 +207,7 @@ Cập nhật lại các module
 ```bash
 php bin/magento setup:upgrade
 php bin/magento setup:di:compile
-php bin/magento setup:static-content:deploy
+php bin/magento setup:static-content:deploy -f
 php bin/magento indexer:reindex
 php bin/magento cache:flush
 ```
@@ -218,7 +218,6 @@ php bin/magento cache:flush
 
 [Một số hướng dẫn cơ bản của Magento 2](https://devdocs.magento.com/videos/fundamentals/)
 
-[Một số tài liệu thêm có thể tìm thấy ở trong phần Tài liệu](https://github.com/inFngNam/2021II_INT3506_1/tree/main/T%C3%A0i%20li%E1%BB%87u)
 
 
 
