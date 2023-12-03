@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="API\ProductAPI\Api\ProductRepositoryInterface" type="API\ProductAPI\Model\ProductRepositoryModel" />
+    <preference for="API\ProductAPI\Api\Data\ProductSearchResultsInterface" type="API\ProductAPI\Model\ProductSearchResults" />
+    <preference for="API\ProductAPI\Api\ProductSearchCriteriaInterface" type="API\ProductAPI\Model\ProductSearchCriteria" />
+    <preference for="API\ProductAPI\Api\ProductBySKUInterface" type="API\ProductAPI\Model\ProductBySKU" />
+    <preference for="API\ProductAPI\Api\ProductByIdInterface" type="API\ProductAPI\Model\ProductById" />
+    <preference for="API\ProductAPI\Api\ProductByCategoryIDInterface" type="API\ProductAPI\Model\ProductByCategoryID" />
+    
+</config>
