@@ -12,23 +12,16 @@
 
 <?php
 // Initialize cURL session
-$ch = curl_init("https://api.rss2json.com/v1/api.json?rss_url=https://vnexpress.net/rss/kinh-doanh.rss");
 
-// Set cURL options
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$json = file_get_contents("https://api.rss2json.com/v1/api.json?rss_url=https://vnexpress.net/rss/kinh-doanh.rss");
 
-// Execute cURL session and get the result
-$result = curl_exec($ch);
-
-// Close cURL session
-curl_close($ch);
 
 // Check for cURL errors
-if ($result === false) {
+if ($json === false) {
     die('cURL Error: ' . curl_error($ch));
 }
 
-$data = json_decode($result, true);
+$data = json_decode($json, true);
 ?>
 
 <div class="container">
