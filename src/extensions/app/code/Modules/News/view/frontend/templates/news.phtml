@@ -34,7 +34,7 @@ $data = json_decode($json, true);
     // Lưu đường dẫn vào biến
     $imgSrc = isset($matches[1]) ? $matches[1] : '';
     ?>
-      <div class="col-sm-6">
+      <div class="col-sm-9">
         <div class="card flex-md-row mb-4 box-shadow h-md-250">
           <div class="row">
             <div class="col-sm-7">
@@ -46,7 +46,7 @@ $data = json_decode($json, true);
                 <p class="card-text mb-auto"><?= strip_tags($item['description']) ?></p>
               </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-7">
               <img class="card-img-right flex-auto d-none d-md-block w-100" data-src="<?= $imgSrc ?>"
                    style="width: 250px; height: 150px;" src="<?= $imgSrc ?>" data-holder-rendered="true">
             </div>
