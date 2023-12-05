@@ -40,9 +40,23 @@ $data = json_decode($con, true);
     <tr>
         <th scope="row"><h5><?= $k+1 ?></h5></th>
         <td style="font-size: 1.25rem;">
-            <img src="https://flagsapi.com/<?= substr($currency['@attributes']['CurrencyCode'], 0, -1) ?>/flat/64.png">
-            <?= $currency['@attributes']['CurrencyCode'] ?>
-        </td>
+    <?php
+    $currencyCode = $currency['@attributes']['CurrencyCode'];
+
+    if (strpos($currencyCode, 'EU') !== false) {
+        // Nếu chuỗi chứa "EU"
+        $flagSrc = 'https://flagcdn.com/h60/eu.png';
+        $flagAlt = 'EUR';
+    } else {
+        // Nếu chuỗi không chứa "EU"
+        $flagSrc = 'https://flagsapi.com/' . substr($currencyCode, 0, -1) . '/flat/64.png';
+        $flagAlt = $currencyCode;
+    }
+    ?>
+
+    <img src="<?= $flagSrc ?>" alt="<?= $flagAlt ?>">
+    <?= $currencyCode ?>
+</td>
         <td><h5><?= $currency['@attributes']['CurrencyName'] ?></h5></td>
         <td><h5><?= $currency['@attributes']['Buy'] ?></h5></td>
         <td><h5><?= $currency['@attributes']['Sell'] ?></h5></td>
