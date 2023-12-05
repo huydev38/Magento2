@@ -24,13 +24,13 @@ $xml = simplexml_load_string($get);
 $con = json_encode($xml);
 $data = json_decode($con, true);
 ?>
-<h3 class="text-center">Bảng quy đổi tiền tệ Vietcombank <?= $data['DateTime'] ?></h3>
+<h3 class="text-center">Tỉ giá ngoại tệ Vietcombank <?= $data['DateTime'] ?></h3>
 <table class="table">
-    <thead>
+<thead style="background-color:#996633">
     <tr>
         <th scope="col"><h5>STT</h5></th>
         <th scope="col"><h5>Mã</h5></th>
-        <th scope="col"><h5>Tên</h5></th>
+        <th scope="col"><h5>Tên ngoại tệ</h5></th>
         <th scope="col"><h5>Giá mua</h5></th>
         <th scope="col"><h5>Giá bán</h5></th>
     </tr>
@@ -54,7 +54,7 @@ $data = json_decode($con, true);
     }
     ?>
 
-    <img src="<?= $flagSrc ?>" alt="<?= $flagAlt ?>">
+<img src="<?= $flagSrc ?>" width='64px'  alt="<?= $flagAlt ?>">
     <?= $currencyCode ?>
 </td>
         <td><h5><?= $currency['@attributes']['CurrencyName'] ?></h5></td>
