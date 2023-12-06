@@ -18,7 +18,9 @@ $json = file_get_contents("https://api.rss2json.com/v1/api.json?rss_url=https://
 
 // Check for cURL errors
 if ($json === false) {
-    die('cURL Error: ' . curl_error($ch));
+  echo '<div class="alert alert-danger" role="alert">
+  Có lỗi xảy ra khi xử lý dữ liệu từ API. Vui lòng thử lại sau.
+</div>';
 }
 
 $data = json_decode($json, true);
@@ -34,21 +36,20 @@ $data = json_decode($json, true);
     // Lưu đường dẫn vào biến
     $imgSrc = isset($matches[1]) ? $matches[1] : '';
     ?>
-      <div class="col-sm-6">
+      <div class="col-md-10">
         <div class="card flex-md-row mb-4 box-shadow h-md-250">
-          <div class="row">
-            <div class="col-sm-7">
-              <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">Tin tức</strong>
+          <div class="row no-gutters">
+            <div class="col-md-7">
+              <div class="card-body">
                 <h4 class="mb-0">
                   <a class="text-dark font-weight-bold" href="<?= $item['link'] ?>"><?= $item['title'] ?></a>
                 </h4>
                 <p class="card-text mb-auto"><?= strip_tags($item['description']) ?></p>
               </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-md-5">
               <img class="card-img-right flex-auto d-none d-md-block w-100" data-src="<?= $imgSrc ?>"
-                   style="width: 250px; height: 150px;" src="<?= $imgSrc ?>" data-holder-rendered="true">
+                   style="width: 100%; height: auto;" src="<?= $imgSrc ?>" data-holder-rendered="true">
             </div>
           </div>
         </div>
