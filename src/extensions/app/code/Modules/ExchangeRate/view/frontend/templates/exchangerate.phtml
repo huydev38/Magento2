@@ -58,8 +58,8 @@ $data = json_decode($con, true);
     <?= $currencyCode ?>
 </td>
         <td  style="font-size: 1.25rem; vertical-align: middle"><h5><?= $currency['@attributes']['CurrencyName'] ?></h5></td>
-        <td><h5><?= $currency['@attributes']['Buy'] ?></h5></td>
-        <td><h5><?= $currency['@attributes']['Sell'] ?></h5></td>
+        <td style="font-size: 1.25rem; vertical-align: middle"><h5><?= $currency['@attributes']['Buy'] ?></h5></td>
+        <td style="font-size: 1.25rem; vertical-align: middle"><h5><?= $currency['@attributes']['Sell'] ?></h5></td>
     </tr>
     <?php endforeach; ?>
     </tbody>
