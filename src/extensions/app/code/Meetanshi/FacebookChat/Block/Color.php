@@ -12,8 +12,23 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 
-class Color extends Field {
+/**
+ * Class Color
+ * @package Meetanshi\FacebookChat\Block
+ */
+class Color extends Field
+{
+    /**
+     * @var Registry
+     */
     protected $_coreRegistry;
+
+    /**
+     * Color constructor.
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param array $data
+     */
     public function __construct(
         Context $context,
         Registry $coreRegistry,
@@ -22,7 +37,13 @@ class Color extends Field {
         $this->_coreRegistry = $coreRegistry;
         parent::__construct($context, $data);
     }
-    protected function _getElementHtml(AbstractElement $element) {
+
+    /**
+     * @param AbstractElement $element
+     * @return string
+     */
+    protected function _getElementHtml(AbstractElement $element)
+    {
         $html = $element->getElementHtml();
         $cpPath=$this->getViewFileUrl('Meetanshi_FacebookChat::js');
         if (!$this->_coreRegistry->registry('colorpicker_loaded')) {

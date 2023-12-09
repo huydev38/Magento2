@@ -23,35 +23,40 @@ class Data extends AbstractHelper
         );
     }
 
-    public function getFBAppId($storeId = null){
+    public function getFBAppId($storeId = null)
+    {
         return $this->scopeConfig->getValue(
             self::XML_FB_APP_ID,
             ScopeInterface::SCOPE_STORE,
             $storeId
         );
     }
-    public function getFBPageId($storeId = null){
+    public function getFBPageId($storeId = null)
+    {
         return $this->scopeConfig->getValue(
             self::XML_FB_PAGE_ID,
             ScopeInterface::SCOPE_STORE,
             $storeId
         );
     }
-    public function getFBColor($storeId = null){
+    public function getFBColor($storeId = null)
+    {
         return $this->scopeConfig->getValue(
             self::XML_FB_COLOR,
             ScopeInterface::SCOPE_STORE,
             $storeId
         );
     }
-    public function getFBLoginText($storeId = null){
+    public function getFBLoginText($storeId = null)
+    {
         return $this->scopeConfig->getValue(
             self::XML_FB_LOGIN_TEXT,
             ScopeInterface::SCOPE_STORE,
             $storeId
         );
     }
-    public function getFBLogoutText($storeId = null){
+    public function getFBLogoutText($storeId = null)
+    {
         return $this->scopeConfig->getValue(
             self::XML_FB_LOGOUT_TEXT,
             ScopeInterface::SCOPE_STORE,

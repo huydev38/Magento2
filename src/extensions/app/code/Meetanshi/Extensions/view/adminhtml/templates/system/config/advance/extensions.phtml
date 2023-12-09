@@ -1,0 +1,101 @@
+<?php
+    $installedModules = $block->getModulesList();
+    $key = 'aHR0cHM6Ly9tZWV0YW5zaGkuY29tL3JlY19leHQucGhw';
+?>
+<input type="text" id="controller_url" value="<?php echo $block->getUrl('extensions/index/addratings');?>" hidden />
+<input type="text" id="feedback_url" value="<?php echo $block->getUrl('extensions/index/sendfeedback');?>" hidden />
+<div class="mt-ext-container-wrapper" >
+    <div class="mt-ext-pur-container mt-ext-container">
+        <div class="mt-ext-pur-header mt-ext-container-header">
+            <img class="mt-ext-pur-header-img" src="<?php echo $this->getViewFileUrl('Meetanshi_Extensions::images/money-bag.png'); ?>" alt="money-bag" />
+            <div class="mt-ext-pur-header-title-wrapper" >
+                <p class="mt-ext-pur-header-title" ><?php echo __("My Purchased Extensions")?></p>
+                <span class="mt-ext-pur-header-subtitle" ><?php echo __("Meetanshi Extensions you’ve purchased from the")?> <a href="https://meetanshi.com/?utm_source=coreext&utm_medium=link&utm_campaign=coreext" target="_blank"><?php echo __("Website")?></a><?php echo __(" or")?> <a href="https://marketplace.magento.com/partner/Meetanshi" target="_blank"><?php echo __("Marketplace")?></a>. <?php echo __("Rate your experience with our extensions to help us serve you better. It won’t take more than a minute.")?></span>
+            </div>
+            <a class="mt-ext-pur-header-link" href="mailto:help@meetanshi.com?utm_source=coreext&utm_medium=link&utm_campaign=coreext" target="_blank" ><?php echo __("SUPPORT")?></a>
+        </div>
+        <div class="mt-ext-pur-main mt-ext-container-main">
+            <?php foreach ($installedModules as $module) {
+            if ($module['data']['name'] != '' or $module['data']['name'] != null) {
+            ?>
+            <div class="mt-ext-pur-card">
+                <div class="mt-ext-pur-card-left">
+                    <a href="<?php echo 'https://meetanshi.com/'.$module['data']['url_key'].".html";?>" target="_blank" class="mt-ext-pur-card-img-link">
+                        <img class="mt-ext-pur-card-img" src="<?php echo "https://meetanshi.com/media/catalog/product".$module['data']['small_image']; ?>" alt="extension" />
+                    </a>
+                </div>
+                <div class="mt-ext-pur-card-right">
+                    <div class="mt-ext-pur-pur-card-top" >
+                        <p class="mt-ext-pur-card-ttl"><?php echo $module['data']['name']; ?> </p>
+                        <div class="mt-ext-pur-card-links">
+                            <a href="<?php echo $module['data']['user_guide'] ?>" target="_blank" ><?php echo __("User Guide")?></a>
+                            <a href="#" target="_blank" style="display: none;"><?php echo __("Lorem ipsum")?></a>
+                        </div>
+                    </div>
+                    <div class="mt-ext-pur-pur-card-bottom" >
+                        <?php if($module['cVer'] < $module['data']['extension_version']) {?>
+                            <span class="mt-ext-pur-card-version" style="color:#008000;" > <?php echo "Version ".$module['cVer']." - "; ?></span>
+                            <span class="mt-ext-pur-card-version" style="color:#ff0315;"> <?php echo $module['data']['extension_version']." available!"; ?></span>
+                            <?php if($module['data']['changelog']) { ?>
+                                <a href="<?php echo 'https://meetanshi.com/'.$module['data']['url_key'].".html#changelog";?>" target="_blank" class="mt-ext-pur-card-changelog"><?php echo __("See What's New!")?></a>
+                            <?php } ?>
+                        <?php }else {?>
+                            <span class="mt-ext-pur-card-version" style="color:#008000;"> <?php echo "Version ".$module['data']['extension_version']; ?></span>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="mt-ext-pur-card-bottom">
+                    <p class="mt-ext-pur-card-bottom-title"><?php echo __("Rate extension :")?> </p>
+                    <div class="mt-ext-pur-card-review-box">
+                        <?php if($module['data']['rating'] != '') { ?>
+                        <div class="rate rate_<?php echo $module['data']['sku'];?>"  data-murl="<?php echo $module['data']['marketplace_url']?> " data-extid="<?php echo $module['data']['entity_id']?>">
+                            <?php }else { ?>
+                            <div class="rate notchecked rate_<?php echo $module['data']['sku'];?>" data-murl="<?php echo $module['data']['marketplace_url']?> " data-extid="<?php echo $module['data']['entity_id']?>">
+                                <?php } ?>
+                                <?php if($module['data']['rating'] == 5) { ?>
+                                    <input type="radio" class="rating_radio radio_5_<?php echo $module['data']['sku'];?> chkd" id="<?php echo $module['data']['entity_id'];?>_star5" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="5" />
+                                <?php }else {?>
+                                    <input type="radio" class="rating_radio radio_5_<?php echo $module['data']['sku'];?>" id="<?php echo $module['data']['entity_id'];?>_star5" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="5" />
+                                <?php } ?>
+                                <label for="<?php echo $module['data']['sku'];?>_star5" title="text"></label>
+
+                                <?php if($module['data']['rating'] == 4) { ?>
+                                    <input type="radio" class="rating_radio radio_4_<?php echo $module['data']['sku'];?> chkd" id="<?php echo $module['data']['entity_id'];?>_star4" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="4" />
+                                <?php }else {?>
+                                    <input type="radio" class="rating_radio radio_4_<?php echo $module['data']['sku'];?>" id="<?php echo $module['data']['entity_id'];?>_star4" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="4" />
+                                <?php } ?>
+                                <label for="<?php echo $module['data']['sku'];?>_star4" title="text"></label>
+
+                                <?php if($module['data']['rating'] == 3) { ?>
+                                    <input type="radio" class="rating_radio radio_3_<?php echo $module['data']['sku'];?> chkd" id="<?php echo $module['data']['entity_id'];?>_star3" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="3" />
+                                <?php }else {?>
+                                    <input type="radio" class="rating_radio radio_3_<?php echo $module['data']['sku'];?>" id="<?php echo $module['data']['entity_id'];?>_star3" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="3" />
+                                <?php } ?>
+                                <label for="<?php echo $module['data']['sku'];?>_star3" title="text"></label>
+
+                                <?php if($module['data']['rating'] == 2) { ?>
+                                    <input type="radio" class="rating_radio radio_2_<?php echo $module['data']['sku'];?> chkd" id="<?php echo $module['data']['entity_id'];?>_star2" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="2" />
+                                <?php }else {?>
+                                    <input type="radio" class="rating_radio radio_2_<?php echo $module['data']['sku'];?>" id="<?php echo $module['data']['entity_id'];?>_star2" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="2" />
+                                <?php } ?>
+                                <label for="<?php echo $module['data']['sku'];?>_star2" title="text"></label>
+
+                                <?php if($module['data']['rating'] == 1) { ?>
+                                    <input type="radio" class="rating_radio radio_1_<?php echo $module['data']['sku'];?> chkd" id="<?php echo $module['data']['entity_id'];?>_star1" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="1" />
+                                <?php }else {?>
+                                    <input type="radio" class="rating_radio radio_1_<?php echo $module['data']['sku'];?>" id="<?php echo $module['data']['entity_id'];?>_star1" data-extname="<?php echo $module['data']['sku']?>" name="rate_<?php echo $module['data']['sku'] ?>" value="1" />
+                                <?php } ?>
+                                <label for="<?php echo $module['data']['sku'];?>_star1" title="text"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php       }
+                } ?>
+            </div>
+        </div>
+        <iframe src="<?php echo base64_decode($key);?>" x-frame-options="*" height="500px" width="100%" ></iframe>
+        <iframe src="<?php echo base64_decode($key);?>" x-frame-options="*" height="500px" width="100%" ></iframe>
+        <div class="popup-marketplace" ></div>
+    </div>
+</div>
