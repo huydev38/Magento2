@@ -28,17 +28,17 @@ $data = json_decode($con, true);
 <table class="table">
 <thead style="background-color:#d1d1d1">
     <tr>
-        <th scope="col"><h4>STT</h4></th>
-        <th scope="col"><h4>Mã</h4></th>
-        <th scope="col"><h4>Tên ngoại tệ</h4></th>
-        <th scope="col"><h4>Giá mua</h4></th>
-        <th scope="col"><h4>Giá bán</h4></th>
+        <th scope="col"><h3>STT</h3></th>
+        <th scope="col"><h3>Mã</h3></th>
+        <th scope="col"><h3>Tên ngoại tệ</h3></th>
+        <th scope="col"><h3>Giá mua</h3></th>
+        <th scope="col"><h3>Giá bán</h3></th>
     </tr>
     </thead>
     <tbody>
     <?php foreach ($data['Exrate'] as $k => $currency): ?>
     <tr>
-        <th scope="row"><h5><?= $k+1 ?></h5></th>
+        <td style="font-size: 1.25rem; vertical-align: middle" scope="row"><h5 ><?= $k+1 ?></h5></td>
         <td style="font-size: 1.25rem;">
     <?php
     $currencyCode = $currency['@attributes']['CurrencyCode'];
@@ -57,9 +57,9 @@ $data = json_decode($con, true);
 <img src="<?= $flagSrc ?>" width='64px'  alt="<?= $flagAlt ?>">
     <?= $currencyCode ?>
 </td>
-        <td><h5><?= $currency['@attributes']['CurrencyName'] ?></h5></td>
-        <td><h5><?= $currency['@attributes']['Buy'] ?></h5></td>
-        <td><h5><?= $currency['@attributes']['Sell'] ?></h5></td>
+        <td  style="font-size: 1.25rem; vertical-align: middle"><h5><?= $currency['@attributes']['CurrencyName'] ?></h5></td>
+        <td style="font-size: 1.25rem; vertical-align: middle"><h5><?= $currency['@attributes']['Buy'] ?></h5></td>
+        <td style="font-size: 1.25rem; vertical-align: middle"><h5><?= $currency['@attributes']['Sell'] ?></h5></td>
     </tr>
     <?php endforeach; ?>
     </tbody>
