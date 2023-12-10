@@ -89,296 +89,62 @@ function getWindDirection($wind_degress)
 }
 ?>
 
-<div style="display: grid; width: max-content; font-size: larger; grid-gap:50px">
-  <div style="width: inherit;" class="row">
-    <h2>
-      Hà Nội, Việt Nam
-    </h2>
-    <p>Ngày <?php echo date("d/m/Y"); ?></p>
+<div style="display: grid; width: max-content; font-size: larger; grid-gap: 50px">
+    <div style="width: inherit;" class="row">
+        <h2>Hà Nội, Việt Nam</h2>
+        <p>Ngày <?php echo date("d/m/Y"); ?></p>
 
-    <div style="width:initial;" class="column">
-      <img src="<?php echo getIconUrl($current->weather[0]->icon); ?>" width="150" height="150">
-      <p>Mô tả: <?php echo ucfirst($current->weather[0]->description); ?></p>
-      <p>Nhiệt độ cảm nhận: <?php echo $current->feels_like; ?>°C</p>
+        <div style="width: initial;" class="column">
+            <img src="<?php echo getIconUrl($current->weather[0]->icon); ?>" width="150" height="150">
+            <p>Mô tả: <?php echo ucfirst($current->weather[0]->description); ?></p>
+            <p>Nhiệt độ cảm nhận: <?php echo $current->feels_like; ?>°C</p>
+        </div>
+        <div class="column">
+            <table class="info">
+                <tbody>
+                    <!-- ... (your existing code for current weather details) ... -->
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="column">
-      <table class="info">
-        <tbody>
-          <tr>
-            <td>
-              <i>- Nhiệt độ</i>: <?php echo $current->temp; ?>°C
-            </td>
-            </td>
-            <td>
-              <i>- Độ ẩm</i>: <?php echo $current->humidity; ?>%
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i>- Hướng gió</i>: <?php echo getWindDirection($current->wind_deg) ?>
-            </td>
-            <td>
-              <i>- Vận tốc gió</i>: <?php echo $current->wind_speed; ?> m/s
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i>- Áp suất</i>: <?php echo $current->pressure; ?> hPa
-            </td>
-            <td>
-              <i>- Tầm nhìn</i>: <?php echo $current->visibility; ?> m
-            </td>Trời nắng
-          </tr>
-          <tr>
-            <td>
-              <i>- Kinh độ</i>: <?php echo $lon ?>
-            </td>
-            <td>
-              <i>- Vĩ độ</i>: <?php echo $lat ?>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <i>- Múi giờ</i>: <?php echo $timezone; ?>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+    <div>
+        <ul style="list-style-type: none; padding-left: 20px; margin-top: 5px;">
+            <?php for ($i = 0; $i < 7; $i++) : ?>
+                <li>
+                    <div class="row">
+                        <div class="column" style="width: 250px; margin-right: 5px;">
+                            <!-- ... (your existing code for daily weather details) ... -->
+                        </div>
+                        <div class="column" style="width: auto;">
+                            <img src="<?php echo getIconUrl($daily[$i]->weather[0]->icon); ?>" width="58px" height="58px">
+                        </div>
+                    </div>
+                </li>
+            <?php endfor; ?>
+        </ul>
     </div>
-  </div>
-  <div>
-    <ul style="list-style-type: none; padding-left: 20px; margin-top: 5px;">
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[0]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[0]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ: <?php $min_temp = (int)$daily[0]->temp->min;
-                        $max_temp = (int)$daily[0]->temp->max;
-                        echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[0]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[0]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[1]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[1]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ:
-              <?php $min_temp = (int)$daily[1]->temp->min;
-              $max_temp = (int)$daily[1]->temp->max;
-              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[1]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[1]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[2]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[2]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ:
-              <?php $min_temp = (int)$daily[2]->temp->min;
-              $max_temp = (int)$daily[2]->temp->max;
-              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[2]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[2]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[3]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[3]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ:
-              <?php $min_temp = (int)$daily[3]->temp->min;
-              $max_temp = (int)$daily[3]->temp->max;
-              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[3]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[3]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[4]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[4]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ:
-              <?php $min_temp = (int)$daily[4]->temp->min;
-              $max_temp = (int)$daily[4]->temp->max;
-              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[4]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[4]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[5]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[5]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ:
-              <?php $min_temp = (int)$daily[5]->temp->min;
-              $max_temp = (int)$daily[5]->temp->max;
-              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[5]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[5]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[6]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[6]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ:
-              <?php $min_temp = (int)$daily[6]->temp->min;
-              $max_temp = (int)$daily[6]->temp->max;
-              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[6]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[6]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="row">
-          <div class="column" style="width: 250px; margin-right: 5px;">
-            <span>
-              <b>
-                <?php echo getDayofWeekName(date("N", $daily[7]->dt)); ?>, ngày
-                <?php echo date("d/m/Y", $daily[7]->dt); ?>
-              </b>
-            </span>
-            <br>
-            <span>
-              Nhiệt độ:
-              <?php $min_temp = (int)$daily[7]->temp->min;
-              $max_temp = (int)$daily[7]->temp->max;
-              echo $min_temp . "°C - " . $max_temp . "°C"; ?>
-            </span>
-            <br>
-            <span>
-              <?php echo ucfirst($daily[7]->weather[0]->description) ?>
-            </span>
-          </div>
-          <div class="column" style="width: auto;">
-            <img src="<?php echo getIconUrl($daily[7]->weather[0]->icon); ?>" width="58px" height="58px">
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
 </div>
 
 <style>
-.column {
-  float: left;
-  width: 50%;
-}
+    .column {
+        float: left;
+        width: 50%;
+    }
 
+    .row:after {
+        display: table;
+        clear: both;
+        margin-bottom: 5px;
+    }
 
-.row:after {
-  display: table;
-  clear: both;
-  margin-bottom: 5px;
-}
+    table {
+        border-collapse: separate;
+        border-spacing: 0 1px;
+    }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0 1px;
-}
-
-table.info td {
-  width: 250px;
-  padding: 5px;
-}
+    table.info td {
+        width: 250px;
+        padding: 5px;
+    }
 </style>
