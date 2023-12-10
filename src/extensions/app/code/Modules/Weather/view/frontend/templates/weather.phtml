@@ -102,26 +102,81 @@ function getWindDirection($wind_degress)
         <div class="column">
             <table class="info">
                 <tbody>
-                    <!-- ... (your existing code for current weather details) ... -->
-                </tbody>
+                <tr>
+            <td>
+              <i>- Nhiệt độ</i>: <?php echo $current->temp; ?>°C
+            </td>
+            </td>
+            <td>
+              <i>- Độ ẩm</i>: <?php echo $current->humidity; ?>%
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i>- Hướng gió</i>: <?php echo getWindDirection($current->wind_deg) ?>
+            </td>
+            <td>
+              <i>- Vận tốc gió</i>: <?php echo $current->wind_speed; ?> m/s
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i>- Áp suất</i>: <?php echo $current->pressure; ?> hPa
+            </td>
+            <td>
+              <i>- Tầm nhìn</i>: <?php echo $current->visibility; ?> m
+            </td>Trời nắng
+          </tr>
+          <tr>
+            <td>
+              <i>- Kinh độ</i>: <?php echo $lon ?>
+            </td>
+            <td>
+              <i>- Vĩ độ</i>: <?php echo $lat ?>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i>- Múi giờ</i>: <?php echo $timezone; ?>
+            </td>
+          </tr>
+                        </tbody>
             </table>
         </div>
     </div>
 
     <div>
         <ul style="list-style-type: none; padding-left: 20px; margin-top: 5px;">
-            <?php for ($i = 0; $i < 7; $i++) : ?>
-                <li>
-                    <div class="row">
-                        <div class="column" style="width: 250px; margin-right: 5px;">
-                            <!-- ... (your existing code for daily weather details) ... -->
-                        </div>
-                        <div class="column" style="width: auto;">
-                            <img src="<?php echo getIconUrl($daily[$i]->weather[0]->icon); ?>" width="58px" height="58px">
-                        </div>
-                    </div>
-                </li>
-            <?php endfor; ?>
+        <?php for ($i = 0; $i < 7; $i++) : ?>
+    <li>
+        <div class="row">
+            <div class="column" style="width: 250px; margin-right: 5px;">
+                <span>
+                    <b>
+                        <?php echo getDayofWeekName(date("N", $daily[$i]->dt)); ?>, ngày
+                        <?php echo date("d/m/Y", $daily[$i]->dt); ?>
+                    </b>
+                </span>
+                <br>
+                <span>
+                    Nhiệt độ:
+                    <?php
+                    $min_temp = (int) $daily[$i]->temp->min;
+                    $max_temp = (int) $daily[$i]->temp->max;
+                    echo $min_temp . "°C - " . $max_temp . "°C";
+                    ?>
+                </span>
+                <br>
+                <span>
+                    <?php echo ucfirst($daily[$i]->weather[0]->description) ?>
+                </span>
+            </div>
+            <div class="column" style="width: auto;">
+                <img src="<?php echo getIconUrl($daily[$i]->weather[0]->icon); ?>" width="58px" height="58px">
+            </div>
+        </div>
+    </li>
+<?php endfor; ?>
         </ul>
     </div>
 </div>
