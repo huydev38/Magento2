@@ -3,7 +3,6 @@
 namespace Magecomp\Chatgptaicontent\Model\CompletionRequest;
 
 use Magecomp\Chatgptaicontent\Api\CompletionRequestInterface;
-use Magecomp\Chatgptaicontent\Model\Config;
 
 class MetaTitle extends AbstractCompletion implements CompletionRequestInterface
 {
@@ -24,30 +23,14 @@ class MetaTitle extends AbstractCompletion implements CompletionRequestInterface
     public function getApiPayload(string $text): array
     {
         parent::validateRequest($text);
-        $model = $this->scopeConfig->getValue(Config::XML_PATH_MODEL);
-        $payload =  [
-            "model" => $model,
+        return [
+            "model" => "text-davinci-003",
+            "prompt" => sprintf("Create HTML meta title (only content) of the following product:\n%s", $text),
             "n" => 1,
             "temperature" => 0.5,
             "max_tokens" => 100,
             "frequency_penalty" => 0,
             "presence_penalty" => 0
         ];
-        $metaTitlePrompt = $this->scopeConfig->getValue(Config::XML_PATH_PROMPT_META_TITLE);
-        if (strpos($model, 'gpt') !== false) {
-            $payload['messages'] = array(
-                array(
-                    'role' => 'system',
-                    'content' => 'You are a helpful assistant.',
-                ),
-                array(
-                    'role' => 'user',
-                    'content' => sprintf($metaTitlePrompt, $text),
-                ),
-            );
-        } else {
-            $payload['prompt'] = sprintf($metaTitlePrompt, $text);
-        }
-        return $payload;
     }
 }
