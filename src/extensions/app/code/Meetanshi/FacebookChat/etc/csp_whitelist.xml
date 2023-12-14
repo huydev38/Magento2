@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="facebook-script" type="host">*.facebook.net</value>
+                <value id="facebook_fb_script" type="host">*.facebook.com</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="facebook-frame" type="host">*.facebook.net</value>
+                <value id="facebook_fb_frame" type="host">*.facebook.com</value>
+            </values>
+        </policy>
+        <policy id="form-action">
+            <values>
+                <value id="facebook-form" type="host">*.facebook.net</value>
+            </values>
+        </policy>
+        <policy id="frame-ancestors">
+            <values>
+                <value id="meetanshi_fb_ancs" type="host">*.facebook.com</value>
+                <value id="meetanshi_fb_anc" type="host">https://www.facebook.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

@@ -1,0 +1,9 @@
+<!--@subject {{trans "Feedback EMAIL from Meetanshi Extensions"}} @-->
+
+<p>Feedback email notification from customer.</p>
+{{depend data.email}}
+{{trans "Email: %email" email=$data.email}}<br/>
+{{/depend}}
+{{depend data.email}}
+{{trans "Message: %msg" msg=$data.msg}}<br/>
+{{/depend}}
